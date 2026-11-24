@@ -22,12 +22,12 @@ import com.iessanalberto.dam2.loginv1.viewmodels.LoginViewModel
 fun LoginScreen(navController: NavController) {
     Scaffold() {innerpadding ->
         LoginBodyContent(modifier = Modifier.padding(paddingValues = innerpadding),
-            navController = navController)
+            onNavigate = {navController.navigate()})
     }
 }
 
 @Composable
-fun LoginBodyContent(modifier: Modifier, navController: NavController) {
+fun LoginBodyContent(modifier: Modifier, onNavigate: (Int) -> Unit) {
 
     val loginViewModel: LoginViewModel = viewModel()
     val loginState by loginViewModel.loginState.collectAsState()
@@ -48,7 +48,7 @@ fun LoginBodyContent(modifier: Modifier, navController: NavController) {
         )
         Button(onClick = {
             if (loginViewModel.conectar()){
-                navController.navigate(AppScreens.MenuScreen.route)
+                onNavigate()
             } else {
                 // TODO MENSAJE DE ERROR
             }
