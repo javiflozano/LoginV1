@@ -11,7 +11,10 @@ import com.iessanalberto.dam2.loginv1.screens.MenuScreen
 fun AppNavigation(){
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = AppScreens.LoginScreen.route){
-        composable(route = AppScreens.LoginScreen.route) { LoginScreen(navController = navController) }
+        composable(route = AppScreens.LoginScreen.route) {
+            LoginScreen(
+                onLoginSuccess = {navController.navigate(AppScreens.MenuScreen.route)}
+                ) }
         composable(route = AppScreens.MenuScreen.route){ MenuScreen(navController = navController) }
     }
 }
